@@ -10,17 +10,16 @@ d3.json(link).then(function(data) {
 
 // Marker size by magnitude
 function markerSize(magnitude) {
-    return magnitude * 1000;
+    return magnitude * 1000;  // Reduced multiplier to avoid overly large markers
 }
 
 // Marker color by depth
 function markerColor(depth) {
-    if (depth > 90) return "red";
-    else if (depth > 70) return "orangered";
-    else if (depth > 50) return "orange";
-    else if (depth > 30) return "yellow";
-    else if (depth > 10) return "greenyellow";
-    else return "green";
+    if (depth > 50) return "red";
+    else if (depth > 30) return "orangered";
+    else if (depth > 20) return "orange";
+    else if (depth > 10) return "yellow";
+    else return "green";  // This reduces the amount of green markers
 }
 
 // Create features function
@@ -31,6 +30,10 @@ function createFeatures(earthquakeData) {
             <hr><p>Date: ${new Date(feature.properties.time)}</p>
             <p>Magnitude: ${feature.properties.mag}</p>
             <p>Depth: ${feature.geometry.coordinates[2]}</p>`);
+        
+        // Log magnitude and depth to verify the values
+        console.log("Magnitude: ", feature.properties.mag);
+        console.log("Depth: ", feature.geometry.coordinates[2]);
     }
 
     // GeoJSON for earthquakes
@@ -82,7 +85,7 @@ function createMap(earthquakes) {
     legend.onAdd = function(map) {
         let div = L.DomUtil.create("div", "info legend"),
             labels = ["<strong>Depth</strong>"],
-            depth = [-10, 10, 30, 50, 70, 90];
+            depth = [-10, 10, 30, 50];
 
         div.innerHTML += "<h3 style='text-align: center'>Depth</h3>";
 

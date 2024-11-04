@@ -10,7 +10,7 @@ d3.json(link).then(function(data) {
 
 // Marker size by magnitude
 function markerSize(magnitude) {
-    return magnitude * 10000;
+    return magnitude * 1000;
 }
 
 // Marker color by depth

@@ -1,5 +1,5 @@
-// Save geoJSON URL
-let link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
+// Save new geoJSON URL for significant earthquakes
+let link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson";
 
 // GET request for data
 d3.json(link).then(function(data) {
